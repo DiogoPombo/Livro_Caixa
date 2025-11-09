@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Movimentos do Caixa</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+</head>
+<body class="container-fluid mt-4">
+
+    <h1 class="mb-4 fs-2">Livro Caixa</h1>
+
+    <!-- Botão para novo movimento -->
+    <a class="btn btn-primary mb-3 ms-2 fs-5" th:href="@{/caixa/novo}">
+        ➕ Registrar Movimento
+    </a>
+
+    <!-- Indicadores: Total gasto no mês e Saldo atual -->
+    <div class="alert alert-light border fs-4 d-flex justify-content-between">
+        <!-- Total gasto no mês -->
+        <div>
+            <strong class="text-dark">Total gasto no mês:</strong>
+            <span class="text-dark" th:text="${#numbers.formatCurrency(totalSaquesMes)}"></span>
+        </div>
+
+        <!-- Saldo atual -->
+        <div>
+            <strong class="text-dark">Saldo atual:</strong>
+            <span class="text-dark" th:text="${#numbers.formatCurrency(caixa.saldoAtual != null ? caixa.saldoAtual : 0)}"></span>
+            <br>
+            <small class="text-dark">Atualizado em:
+                <span th:text="${caixa.atualizadoEm != null ? #temporals.format(caixa.atualizadoEm, 'dd/MM/yyyy HH:mm') : 'N/A'}"></span>
+            </small>
+        </div>
+    </div>
+
+    <!-- Tabela de movimentos -->
+    <div class="table-responsive">
+        <table class="table table-striped table-hover align-middle fs-5">
+            <thead class="table-dark">
+                <tr>
+                    <th>Data/Hora</th>
+                    <th>Tipo</th>
+                    <th>Valor</th>
+                    <th>Observação</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="mov : ${movimentos}">
+                    <td th:text="${#temporals.format(mov.dataHora, 'dd/MM/yyyy HH:mm')}"></td>
+
+                    <!-- Tipo com cor -->
+                    <td>
+                        <span th:text="${mov.tipo}"
+                              th:classappend="${mov.tipo.name() == 'ENTRADA'} ? 'text-success fw-bold' : 'text-danger fw-bold'">
+                        </span>
+                    </td>
+
+                    <!-- Valor com formatação monetária -->
+                    <td>
+                        <span th:text="${#numbers.formatCurrency(mov.valor)}"
+                              th:classappend="${mov.tipo.name() == 'ENTRADA'} ? 'text-success fw-bold' : 'text-danger fw-bold'">
+                        </span>
+                    </td>
+
+                    <!-- Observação truncada com tooltip -->
+                    <td>
+                        <span th:text="${mov.observacao}"
+                              th:title="${mov.observacao}"
+                              style="display:inline-block; max-width: 1500px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+                        </span>
+                    </td>
+
+                    <!-- Botão deletar -->
+                    <td>
+                        <form th:action="@{/caixa/deletar/{id}(id=${mov.id})}" method="post"
+                              onsubmit="return confirm('Deseja realmente deletar este movimento?');">
+                            <button type="submit" class="btn btn-sm btn-danger">
+                                🗑️ Deletar
+                            </button>
+                        </form>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Bootstrap JS (opcional) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
