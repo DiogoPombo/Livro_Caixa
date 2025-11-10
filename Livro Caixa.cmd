@@ -28,7 +28,7 @@ set "BASESCRIPTFILE=%~dp0\JLS\"
 
 if not exist "%BASESCRIPTFILE%" (
     COLOR 0C
-    echo [ERROR] Pasta JLS nao encontrada: %BASESCRIPTFILE%
+    echo [ERROR] Folder JLS not found: %BASESCRIPTFILE%
     timeout /t 5 /nobreak >nul
     goto end
 )
