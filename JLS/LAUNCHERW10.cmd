@@ -19,7 +19,6 @@ set "APPNM=Livro Caixa"
 
 set "BASE=%~dp0"
 set "SOM=%BASE%play.vbs"
-set "ps1script=%BASE%filelocation.ps1"
 set "APP_URL=http://localhost:8080/"
 set "JAVA_FILE_PATH=%BASE%..\target\Caixa-0.0.1-SNAPSHOT.jar
 
