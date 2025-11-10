@@ -11,6 +11,8 @@
 @echo off
 setlocal enabledelayedexpansion
 
+
+
 :start
 set "APPNM=Livro Caixa"
 @title %APPNM%
@@ -34,7 +36,7 @@ set colors=00 80 70 F0
 timeout /t 2 /nobreak >nul
 for %%c in (%colors%) do (
     color %%c
-    timeout /t 0 /nobreak >nul
+    ping -n 1 127.0.0.1 >nul
 )
 
 :: Language-independent parsing for console dimensions using PowerShell
@@ -49,6 +51,8 @@ set "SPACES="
 for /l %%i in (1,1,%PAD%) do set "SPACES=!SPACES! "
 
 set /a PADV=(LINS - ALT) / 2
+:: Cap PADV to prevent excessive blank lines in Win10
+if %PADV% GTR 20 set /a PADV=20
 
 set "L1=*****************************************************************************"
 set "L2=*                                                                           *"
@@ -78,7 +82,7 @@ set "L3=!L3!!SPACESRIGHT!*"
 
 set "L4=*                                                                           *"
 
-timeout /t 0 /nobreak >nul
+ping -n 1 127.0.0.1 >nul
 for %%c in (%colors2%) do (
     color %%c
     cls
@@ -91,28 +95,28 @@ for %%c in (%colors2%) do (
     echo !SPACES!!L4!
     echo !SPACES!!L1!
 
-    timeout /t 0 /nobreak >nul
+    ping -n 1 127.0.0.1 >nul
 )
 
-timeout /t 5 /nobreak >nul
-timeout /t 0 /nobreak >nul
-timeout /t 0 /nobreak >nul
-timeout /t 0 /nobreak >nul
-timeout /t 0 /nobreak >nul
+timeout /t 6 /nobreak >nul
+ping -n 1 127.0.0.1 >nul
+ping -n 1 127.0.0.1 >nul
+ping -n 1 127.0.0.1 >nul
+ping -n 1 127.0.0.1 >nul
 color 0A
-timeout /t 0 /nobreak >nul
+ping -n 1 127.0.0.1 >nul
 color 0B
-timeout /t 0 /nobreak >nul
+ping -n 1 127.0.0.1 >nul
 color 0F
 cls
-timeout /t 0 /nobreak >nul
-timeout /t 0 /nobreak >nul
-timeout /t 0 /nobreak >nul
+ping -n 1 127.0.0.1 >nul
+ping -n 1 127.0.0.1 >nul
+ping -n 1 127.0.0.1 >nul
 color 0A
 echo.
 
 set "LINE=************************** %APPNM% **************************"
-set "LENLINE=0"
+set "LENLINE=0
 for /l %%i in (0,1,200) do (
     if "!LINE:~%%i,1!"=="" (
         set /a LENLINE=%%i
