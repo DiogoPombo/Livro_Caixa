@@ -70,7 +70,6 @@ if %BUILD% GEQ 22000 (
 
 :: Executar o launcher selecionado
 COLOR 0A
-echo [INFO] Iniciando Livro Caixa no %WINDOWS_VERSION%...
 call "%LAUNCHER_PATH%"
 if %errorlevel% neq 0 (
     COLOR 0C
