@@ -16,8 +16,8 @@
     <groupId>com.Livro</groupId>
     <artifactId>Caixa</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>fabrico</name>
-    <description>Ponto de Venda Fabrico</description>
+    <name>Livro Caixa</name>
+    <description>Aplicativo de controle financeiro</description>
 
     <properties>
         <java.version>17</java.version>
