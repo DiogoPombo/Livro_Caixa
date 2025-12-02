@@ -21,9 +21,7 @@ chcp 65001 > nul
 set MODE=%1
 shift
 
-
 goto :main
-
 
 :pause_zero
 if "%MODE%"=="-win11" (
@@ -97,14 +95,7 @@ set "SOM2=%BASE%play2.vbs"
 set "APP_URL=http://localhost:8080/"
 set "SPACE= "
 
-
-
 set "JAVA_FILE_PATH=%BASE%..\target\Caixa-0.0.1-SNAPSHOT.jar"
-
-
-
-
-
 
 if "%1"=="-s" (
     goto silent) else if "%1"=="-S" (
@@ -112,7 +103,6 @@ if "%1"=="-s" (
 
 @title %APPNM%
 wscript.exe "%SOM%"
-
 
 set colors2=F0
 set colors=00 80 70 F0
@@ -181,7 +171,6 @@ for %%c in (%colors2%) do (
     call :pause_zero
 )
 
-
 if "%MODE%"=="-win11" (
     timeout /t 4 /nobreak >nul
 ) else (
@@ -204,8 +193,6 @@ call :pause_zero
 call :pause_zero
 color 0A
 echo.
-
-
 
 set "LINE=**************************%SPACE%%APPNM%%SPACE%**************************"
 set "LENLINE=0"
