@@ -27,6 +27,5 @@ O **Livro Caixa** é um sistema simples para registrar movimentações financeir
 - O sistema é voltado para uso pessoal e controle básico de fluxo de caixa.
 - Recomenda-se manter o projeto atualizado e revisar configurações de segurança conforme necessário.
 
-- 
 📄 Licença:
-Este projeto é de uso pessoal e não possui licença pública definida.
+- Este projeto é de uso pessoal e não possui licença pública definida.
