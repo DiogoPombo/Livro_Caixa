@@ -191,7 +191,7 @@ cls
 call :pause_zero
 call :pause_zero
 call :pause_zero
-color 70
+color F0
 echo.
 
 set "LINE=**************************%SPACE%%APPNM%%SPACE%**************************"
