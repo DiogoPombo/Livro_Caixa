@@ -4,13 +4,13 @@
 ::----------------------------------------------------------------------------------------------------------------------------------------------------::
 
 ::------------------------------------------::
-:: Author: Diogo Santos Pombo - \Õ/ - @2025 ::
+:: Author: Diogo Santos Pombo - \Õ/ - @2026 ::
 ::------------------------------------------::
 
 @echo off
 setlocal enabledelayedexpansion
 
-set "APPNM=LIVRO CAIXA"
+set "APPNM=JLauncher"
 
 for /f "tokens=* delims=" %%a in ('chcp') do (
     for %%b in (%%a) do set "original_cp=%%b"
@@ -91,11 +91,20 @@ set "DELAY_SECONDS=10"
 set "BASE=%~dp0"
 set "SOM=%BASE%play.vbs"
 set "SOM2=%BASE%play2.vbs"
+set "UTOPIA_PS=%BASE%Utopia.ps1"
+set "UTOPIAL_PS=%BASE%UtopiaLight.ps1"
+if "%1"=="-l" (
+    set PS_SCRIPT=%UTOPIAL_PS%
+) else if "%1"=="-L" (
+    set PS_SCRIPT=%UTOPIAL_PS%
+) else (
+    set PS_SCRIPT=%UTOPIA_PS%
+)
 
 set "APP_URL=http://localhost:8080/"
 set "SPACE= "
 
-set "JAVA_FILE_PATH=%BASE%..\target\Caixa-0.0.1-SNAPSHOT.jar"
+set "JAVA_FILE_PATH=%BASE%..\target\file.jar"
 
 if "%1"=="-s" (
     goto silent) else if "%1"=="-S" (
@@ -191,7 +200,12 @@ cls
 call :pause_zero
 call :pause_zero
 call :pause_zero
-color F0
+color 07
+if "%1"=="-l" (
+    color F0
+) else if "%1"=="-L" (
+    color F0
+)
 echo.
 
 set "LINE=**************************%SPACE%%APPNM%%SPACE%**************************"
@@ -212,15 +226,15 @@ echo !SPACES2!!LINE!
 :silent
 @title %APPNM%
 chcp %original_cp% >nul
-start "" /b java -jar "%JAVA_FILE_PATH%"
+start "" /b cmd /c "java -jar "%JAVA_FILE_PATH%" 2>&1 | powershell -NoProfile -ExecutionPolicy Bypass -File "%PS_SCRIPT%""
 timeout /t %DELAY_SECONDS% /nobreak >nul
 
-if not "!APP_URL!"=="" (
-    start "%APPNM%" "msedge" --app="!APP_URL!"
-        if not %errorlevel%==0 (
-            start "" "!APP_URL!"
-    )
-)
+::if not "!APP_URL!"=="" (
+::    start "%APPNM%" "msedge" --app="!APP_URL!"
+::        if not %errorlevel%==0 (
+::            start "" "!APP_URL!"
+::    )
+::)
 
 :end
 echo.
