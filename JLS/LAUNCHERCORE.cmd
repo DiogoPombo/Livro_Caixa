@@ -224,6 +224,9 @@ for /l %%i in (1,1,%PAD2%) do set "SPACES2=!SPACES2! "
 
 echo !SPACES2!!LINE!
 :silent
+set "UTOPIA_APPNM=%APPNM%"
+set "UTOPIA_APP_URL=%APP_URL%"
+set "UTOPIA_OPENED="
 @title %APPNM%
 chcp %original_cp% >nul
 start "" /b cmd /c "java -jar "%JAVA_FILE_PATH%" 2>&1 | powershell -NoProfile -ExecutionPolicy Bypass -File "%PS_SCRIPT%""
